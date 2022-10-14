@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;400&display=swap');
+
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: #98A8F8;
+    font-family: 'Nunito', sans-serif;
+    background-image: url("./assets/alfea.png");
+    background-size: cover;
+}
+
+#seleccionar-mascota {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo {
+    color: palevioletred;
+    font-size: 50px;
+}
+
+.subtitulo {
+    color: #CDFCF6;
+    font-size: 30px;
+}
+
+.tarjetas {
+    display: flex;
+    gap: 10px;
+}
+
+.tarjeta-de-mokepon{
+    width: 112px;
+    height: 100px;
+    background: #BCCEF8;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    display: flex;
+    color: palevioletred;
+}
+
+.tarjeta-de-mokepon-bloom{
+    width: 125px;
+    height: 100px;
+    background: #BCCEF8;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    display: flex;
+    color: palevioletred;
+}
+
+.tarjeta-de-mokepon img{
+    width: 90px;
+}
+
+#boton-mascota {
+    width 200px;
+    height: 40px;
+    border-radius: 20px;
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    margin-top: 30px;
+}
+
+input {
+    display: none;
+}
+
+#seleccionar-ataque {
+    flex-direction: column;
+    align-items: center;
+}
+
+.attack {
+    background-color:#BCCEF8;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    border-color: transparent;
+    width 100px;
+    color: white;
+    font-family: 'Nunito', sans-serif;
+}

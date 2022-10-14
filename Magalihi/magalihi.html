@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Magalihi</title>
+
+    </head>
+    <body>
+        <section id="seleccionar-mascota">
+            <h1 class="titulo"> Magalihi</h1>
+
+            <h2 class="subtitulo">Choose your fighter:</h2>
+
+            <div class="tarjetas">
+                <label class="tarjeta-de-mokepon-bloom" for="bloom">
+                    <p>Bloom</p>
+                    <img src="./assets/bloon.png" alt="Bloom">
+                </label>
+                <input type="radio" name="mascota" id="bloom"/>
+               
+                <label class="tarjeta-de-mokepon" for="flora">
+                    <p>Flora</p>
+                    <img src="./assets/flora.png" alt="Flora">
+                </label>
+                <input type="radio" name="mascota" id="flora"/>
+                
+                <label class="tarjeta-de-mokepon" for="techna">
+                    <p>Techna</p>
+                    <img src="./assets/technaa.png" alt="Techna">
+                </label>
+                <input type="radio" name="mascota" id="techna"/>
+            </div>
+
+            <button id="boton-mascota">Select</button>
+        </section>
+
+        <section id="seleccionar-ataque">
+            <h1 class="titulo">Magalihi</h1>
+
+            <h2 class="subtitulo">Choose your attack</h2>
+
+            <div>
+                <button id="boton-fuego" class="attack">Fire 🔥 </button>
+                <button id="boton-agua" class="attack">Water 💧 </button>
+                <button id="boton-tierra" class="attack">Earth 🪴</button>
+            </div>
+
+            <div>
+                <section id="mensajes">
+                </section>
+        
+                <section id="reiniciar">
+                    <button id="boton-reiniciar">Restart</button>
+                </section>
+            </div>
+
+            <p>Your fighter <span id="mascota-jugador"></span> has <span id="vidas-jugador">3</span> lives</p>
+            <p>Your enemy's fighter <span id="mascota-enemigo"></span> has <span id="vidas-enemigo">3</span> lives</p>
+
+        </section>
+
+        <script src="./js/magalihi.js"></script>
+        <link rel="stylesheet" href="./styles.css">
+    </body>
+</html>

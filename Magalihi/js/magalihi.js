@@ -29,21 +29,21 @@ function seleccionarMascotaJugador(){
     sectionSeleccionarMascota.style.display = "none"
     
     let sectionSeleccionarAtaque = document.getElementById("seleccionar-ataque")
-    sectionSeleccionarAtaque.style.display = "block"
+    sectionSeleccionarAtaque.style.display = "flex"
 
-    let inputHipodoge = document.getElementById("hipodoge")
-    let inputCapipepo = document.getElementById("capipepo")
-    let inputRatigueya = document.getElementById("ratigueya")
+    let inputBloom = document.getElementById("bloom")
+    let inputFlora = document.getElementById("flora")
+    let inputTechna = document.getElementById("techna")
     let spanMascotaJugador = document.getElementById("mascota-jugador")
 
-    if (inputHipodoge.checked){
-        spanMascotaJugador.innerHTML = "Hipodoge"
-    } else if (inputCapipepo.checked) {
-        spanMascotaJugador.innerHTML = "Capipepo"
-    } else if (inputRatigueya.checked) {
-        spanMascotaJugador.innerHTML = "Ratigueya"
+    if (inputBloom.checked){
+        spanMascotaJugador.innerHTML = "Bloom"
+    } else if (inputFlora.checked) {
+        spanMascotaJugador.innerHTML = "Flora"
+    } else if (inputTechna.checked) {
+        spanMascotaJugador.innerHTML = "Techna"
     } else {
-        alert("Selecciona una mascota")
+        alert("Select a fighter")
     }
 
     seleccionarMascotaEnemigo()
@@ -54,11 +54,11 @@ function seleccionarMascotaEnemigo(){
     let spanMascotaEnemigo = document.getElementById ("mascota-enemigo")
 
     if (mascotaAleatorio == 1){
-        spanMascotaEnemigo.innerHTML = "Hipodoge"
+        spanMascotaEnemigo.innerHTML = "Bloom"
     } else if (mascotaAleatorio == 2){
-        spanMascotaEnemigo.innerHTML = "Capipepo"
+        spanMascotaEnemigo.innerHTML = "Flora"
     } else {
-        spanMascotaEnemigo.innerHTML = "Ratigueya"
+        spanMascotaEnemigo.innerHTML = "Techna"
     } 
 }
 
