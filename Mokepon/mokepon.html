@@ -6,22 +6,28 @@
 
     </head>
     <body>
-        <h1>Mokepon 🔥💧🪴</h1>
+        <section id="seleccionar-mascota">
+            <h1 class="titulo"> Random Game</h1>
 
-        <section id="Seleccionar-mascota">
-            <h2>Elige tu mascota:</h2>
+            <h2 class="subtitulo">Elige tu mascota:</h2>
 
-            <label for="hipodoge">Hipodoge</label>
-            <input type="radio" name="mascota" id="hipodoge"/>
-            <label for="capipepo">Capipepo</label>
-            <input type="radio" name="mascota" id="capipepo"/>
-            <label for="ratigueya">Ratigueya</label>
-            <input type="radio" name="mascota" id="ratigueya"/>
+            <div class="tarjetas">
+                <label class="tarjeta-de-mokepon" for="hipodoge">Hipodoge</label>
+                <input type="radio" name="mascota" id="hipodoge"/>
+               
+                <label class="tarjeta-de-mokepon" for="capipepo">Capipepo</label>
+                <input type="radio" name="mascota" id="capipepo"/>
+                
+                <label class="tarjeta-de-mokepon" for="ratigueya">Ratigueya</label>
+                <input type="radio" name="mascota" id="ratigueya"/>
+            </div>
 
             <button id="boton-mascota">Seleccionar</button>
         </section>
 
         <section id="seleccionar-ataque">
+            <h1 class="titulo">Mokepon 🔥💧🪴</h1>
+            
             <h2>Elige tu ataque:</h2>
 
             <p>Tu mascota <span id="mascota-jugador"></span> tiene <span id="vidas-jugador">3</span> vidas</p>
@@ -42,5 +48,6 @@
         </section>
 
         <script src="./js/mokepon.js"></script>
+        <link rel="stylesheet" href="./styles.css">
     </body>
 </html>

@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: #FAF7F0;
+}
+
+#seleccionar-mascota {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo {
+    color: palevioletred;
+}
+
+.subtitulo {
+    color: #98A8F8;
+    font-size: 20px;
+}
+
+.tarjetas {
+    display: flex;
+    gap: 10px;
+}
+
+.tarjeta-de-mokepon{
+    width: 100px;
+    height: 100px;
+    background: gainsboro;
+    padding: 10px;
+    box-sizing: border-box;
+    margin: 10px;
+    border: 1px solid purple;
+}
+
+input {
+    display: none;
+}
