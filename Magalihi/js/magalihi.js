@@ -13,12 +13,12 @@ function iniciarJuego(){
     let botonMascotaJugador = document.getElementById("boton-mascota")
     botonMascotaJugador.addEventListener("click", seleccionarMascotaJugador)
 
-    let botonFuego = document.getElementById("boton-fuego")
-    botonFuego.addEventListener("click", ataqueFuego)
-    let botonAgua = document.getElementById("boton-agua")
-    botonAgua.addEventListener("click", ataqueAgua)
-    let botonTierra = document.getElementById("boton-tierra")
-    botonTierra.addEventListener("click", ataqueTierra)
+    let botonFuego = document.getElementById("boton-fire")
+    botonFuego.addEventListener("click", ataqueFire)
+    let botonAgua = document.getElementById("boton-water")
+    botonAgua.addEventListener("click", ataqueWater)
+    let botonTierra = document.getElementById("boton-earth")
+    botonTierra.addEventListener("click", ataqueEarth)
 
     let botonReiniciar = document.getElementById("boton-reiniciar")
     botonReiniciar.addEventListener("click", reiniciarJuego)
@@ -34,6 +34,7 @@ function seleccionarMascotaJugador(){
     let inputBloom = document.getElementById("bloom")
     let inputFlora = document.getElementById("flora")
     let inputTechna = document.getElementById("techna")
+    let inputMusa = document.getElementById("musa")
     let spanMascotaJugador = document.getElementById("mascota-jugador")
 
     if (inputBloom.checked){
@@ -42,7 +43,9 @@ function seleccionarMascotaJugador(){
         spanMascotaJugador.innerHTML = "Flora"
     } else if (inputTechna.checked) {
         spanMascotaJugador.innerHTML = "Techna"
-    } else {
+    } else if (inputMusa.checked) {
+        spanMascotaJugador.innerHTML = "Musa"
+    }else {
         alert("Select a fighter")
     }
 
@@ -50,30 +53,32 @@ function seleccionarMascotaJugador(){
 }
 
 function seleccionarMascotaEnemigo(){
-    let mascotaAleatorio = aleatorio(1, 3)
+    let mascotaAleatorio = aleatorio(1, 4)
     let spanMascotaEnemigo = document.getElementById ("mascota-enemigo")
 
     if (mascotaAleatorio == 1){
         spanMascotaEnemigo.innerHTML = "Bloom"
     } else if (mascotaAleatorio == 2){
         spanMascotaEnemigo.innerHTML = "Flora"
-    } else {
+    } else if (mascotaAleatorio == 3){
         spanMascotaEnemigo.innerHTML = "Techna"
+    }else {
+        spanMascotaEnemigo.innerHTML = "Musa"
     } 
 }
 
-function ataqueFuego(){
-    ataqueJugador = "Fuego"
+function ataqueFire(){
+    ataqueJugador = "Fire"
     ataqueAleatorioEnemigo()
 }
 
-function ataqueAgua(){
-    ataqueJugador = "Agua"
+function ataqueWater(){
+    ataqueJugador = "Water"
     ataqueAleatorioEnemigo()
 }
 
-function ataqueTierra(){
-    ataqueJugador = "Tierra"
+function ataqueEarth(){
+    ataqueJugador = "Earth"
     ataqueAleatorioEnemigo()
 }
 
@@ -81,11 +86,11 @@ function ataqueAleatorioEnemigo(){
     let ataqueAleatorio = aleatorio(1,3)
     
     if(ataqueAleatorio == 1){
-        ataqueEnemigo = "Fuego"
+        ataqueEnemigo = "Fire"
     } else if (ataqueAleatorio == 2){
-        ataqueEnemigo = "Agua"
+        ataqueEnemigo = "Water"
     } else{
-        ataqueEnemigo = "Tierra"
+        ataqueEnemigo = "Earth"
     }
 
     combate()
@@ -96,21 +101,21 @@ function combate(){
     let spanVidasEnemigo = document.getElementById("vidas-enemigo")
 
     if (ataqueEnemigo == ataqueJugador) {
-        crearMensaje("EMPATE")
-    }   else if (ataqueJugador == "Fuego" && ataqueEnemigo == "Tierra") {
-        crearMensaje("GANASTE")
+        crearMensaje("No one wins")
+    }   else if (ataqueJugador == "Fire" && ataqueEnemigo == "Earth") {
+        crearMensaje("Winner")
         vidasEnemigo--
         spanVidasEnemigo.innerHTML = vidasEnemigo
-    }   else if (ataqueJugador == "Agua" && ataqueEnemigo == "Fuego") {
-        crearMensaje("GANASTE")
+    }   else if (ataqueJugador == "Water" && ataqueEnemigo == "Fire") {
+        crearMensaje("Winner")
         vidasEnemigo--
         spanVidasEnemigo.innerHTML = vidasEnemigo
-    }   else if (ataqueJugador == "Tierra" && ataqueEnemigo == "Agua") {
-        crearMensaje("GANASTE")
+    }   else if (ataqueJugador == "Earth" && ataqueEnemigo == "Water") {
+        crearMensaje("Winner")
         vidasEnemigo--
         spanVidasEnemigo.innerHTML = vidasEnemigo
     }   else {
-        crearMensaje("PERDISTE")
+        crearMensaje("You have lost")
         vidasJugador--
         spanVidasJugador.innerHTML = vidasJugador
     }
@@ -120,34 +125,41 @@ function combate(){
 
 function revisarVidas(){
     if (vidasEnemigo == 0){
-        CrearMensajeFinal("Felicitaciones!!")
+        CrearMensajeFinal("Congratulations")
     } else if (vidasJugador == 0){
-        CrearMensajeFinal("Perdedor")
+        CrearMensajeFinal("Loser")
     }
 }
 
 function crearMensaje(resultado){
-    let sectionMensajes = document.getElementById("mensajes")
+    let sectionMessages = document.getElementById("result")
+    let attackPlayer = document.getElementById("attack-player")
+    let attackEnemy = document.getElementById("attack-enemy")
 
-    let parrafo = document.createElement("p")
-    parrafo.innerHTML = "Tu mascota ataco con " + ataqueJugador + ", la mascota del enemigo ataco con " + ataqueEnemigo + "- " + resultado
+    let newAttackPlayer = document.createElement("p")
+    let newAttackEnemy = document.createElement("p")
 
-    sectionMensajes.appendChild(parrafo)
+    sectionMessages.innerHTML = resultado
+    newAttackPlayer.innerHTML = ataqueJugador
+    newAttackEnemy.innerHTML = ataqueEnemigo
+
+    // let parrafo = document.createElement("p")
+    // parrafo.innerHTML = "Your fighter attacked with " + ataqueJugador + ", Your enemy's fighter has attacked with " + ataqueEnemigo + "- " + resultado
+
+    attackPlayer.appendChild(newAttackPlayer)
+    attackEnemy.appendChild(newAttackEnemy)
 }
 
 function CrearMensajeFinal(resultadoFinal){
-    let sectionMensajes = document.getElementById("mensajes")
+    let sectionMessages = document.getElementById("result")
 
-    let parrafo = document.createElement("p")
-    parrafo.innerHTML = resultadoFinal
+    sectionMessages.innerHTML = resultadoFinal
 
-    sectionMensajes.appendChild(parrafo)
-
-    let botonFuego = document.getElementById("boton-fuego")
+    let botonFuego = document.getElementById("boton-fire")
     botonFuego.disabled = true
-    let botonAgua = document.getElementById("boton-agua")
+    let botonAgua = document.getElementById("boton-water")
     botonAgua.disabled = true
-    let botonTierra = document.getElementById("boton-tierra")
+    let botonTierra = document.getElementById("boton-earth")
     botonTierra.disabled = true
 
     let sectionReiniciar = document.getElementById("reiniciar")
