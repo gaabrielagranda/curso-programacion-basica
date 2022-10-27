@@ -3,7 +3,6 @@
     <head>
         <meta charset="utf-8"  name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>Magalihi</title>
-        <script src="./js/magalihi.js"></script>
         <link rel="stylesheet" href="./styles.css">
     </head>
     <body>
@@ -13,29 +12,23 @@
             <h2 class="subtitulo">Choose your fighter:</h2>
 
             <div class="tarjetas">
+                <input type="radio" name="mascota" id="bloom"/>
                 <label class="tarjeta-de-mokepon-bloom" for="bloom">
                     <p>Bloom</p>
                     <img src="./assets/bloon.png" alt="Bloom">
                 </label>
-                <input type="radio" name="mascota" id="bloom"/>
-               
+                
+                <input type="radio" name="mascota" id="flora"/>
                 <label class="tarjeta-de-mokepon" for="flora">
                     <p>Flora</p>
                     <img src="./assets/flora.png" alt="Flora">
                 </label>
-                <input type="radio" name="mascota" id="flora"/>
                 
+                <input type="radio" name="mascota" id="techna"/>
                 <label class="tarjeta-de-mokepon" for="techna">
                     <p>Techna</p>
                     <img src="./assets/technaa.png" alt="Techna">
-                </label>
-                <input type="radio" name="mascota" id="techna"/>
-
-                <label class="tarjeta-de-mokepon" for="Musa">
-                    <p>Musa</p>
-                    <img src="./assets/musa.png" alt="Musa">
-                </label>
-                <input type="radio" name="mascota" id="musa"/>
+                </label>   
             </div>
 
             <button id="boton-mascota">Select</button>
@@ -73,5 +66,6 @@
                 </div>
              </div>
         </section>  
+        <script src="./js/magalihi.js"></script>
     </body>
 </html>

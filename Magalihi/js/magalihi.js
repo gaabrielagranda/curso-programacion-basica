@@ -1,41 +1,59 @@
+const sectionSeleccionarAtaque = document.getElementById("seleccionar-ataque")
+const sectionReiniciar = document.getElementById("reiniciar")
+const botonMascotaJugador = document.getElementById("boton-mascota")
+const botonFuego = document.getElementById("boton-fire")
+sectionReiniciar.style.display = 'none'
+const botonAgua = document.getElementById("boton-water")
+const botonTierra = document.getElementById("boton-earth")
+const botonReiniciar = document.getElementById("boton-reiniciar")
+
+const sectionSeleccionarMascota = document.getElementById("seleccionar-mascota")
+const inputBloom = document.getElementById("bloom")
+const inputFlora = document.getElementById("flora")
+const inputTechna = document.getElementById("techna")
+const spanMascotaJugador = document.getElementById("mascota-jugador")
+const spanMascotaEnemigo = document.getElementById ("mascota-enemigo")
+
+const spanVidasJugador = document.getElementById("vidas-jugador")
+const spanVidasEnemigo = document.getElementById("vidas-enemigo")
+
+const sectionMessages = document.getElementById("result")
+const attackPlayer = document.getElementById("attack-player")
+const attackEnemy = document.getElementById("attack-enemy")
+
+
+
 let ataqueJugador 
 let ataqueEnemigo
 let vidasJugador = 3
 let vidasEnemigo = 3
 
 function iniciarJuego(){
-    let sectionSeleccionarAtaque = document.getElementById("seleccionar-ataque")
+    
     sectionSeleccionarAtaque.style.display = "none"
 
-    let sectionReiniciar = document.getElementById("reiniciar")
-    sectionReiniciar.style.display = "none"
-
-    let botonMascotaJugador = document.getElementById("boton-mascota")
+    
     botonMascotaJugador.addEventListener("click", seleccionarMascotaJugador)
 
-    let botonFuego = document.getElementById("boton-fire")
+    
     botonFuego.addEventListener("click", ataqueFire)
-    let botonAgua = document.getElementById("boton-water")
+   
     botonAgua.addEventListener("click", ataqueWater)
-    let botonTierra = document.getElementById("boton-earth")
+   
     botonTierra.addEventListener("click", ataqueEarth)
 
-    let botonReiniciar = document.getElementById("boton-reiniciar")
+    
     botonReiniciar.addEventListener("click", reiniciarJuego)
 }
 
 function seleccionarMascotaJugador(){
-    let sectionSeleccionarMascota = document.getElementById("seleccionar-mascota")
+   
     sectionSeleccionarMascota.style.display = "none"
     
-    let sectionSeleccionarAtaque = document.getElementById("seleccionar-ataque")
+    
     sectionSeleccionarAtaque.style.display = "flex"
 
-    let inputBloom = document.getElementById("bloom")
-    let inputFlora = document.getElementById("flora")
-    let inputTechna = document.getElementById("techna")
-    let inputMusa = document.getElementById("musa")
-    let spanMascotaJugador = document.getElementById("mascota-jugador")
+    
 
     if (inputBloom.checked){
         spanMascotaJugador.innerHTML = "Bloom"
@@ -43,8 +61,6 @@ function seleccionarMascotaJugador(){
         spanMascotaJugador.innerHTML = "Flora"
     } else if (inputTechna.checked) {
         spanMascotaJugador.innerHTML = "Techna"
-    } else if (inputMusa.checked) {
-        spanMascotaJugador.innerHTML = "Musa"
     }else {
         alert("Select a fighter")
     }
@@ -54,7 +70,6 @@ function seleccionarMascotaJugador(){
 
 function seleccionarMascotaEnemigo(){
     let mascotaAleatorio = aleatorio(1, 4)
-    let spanMascotaEnemigo = document.getElementById ("mascota-enemigo")
 
     if (mascotaAleatorio == 1){
         spanMascotaEnemigo.innerHTML = "Bloom"
@@ -97,8 +112,6 @@ function ataqueAleatorioEnemigo(){
 }
 
 function combate(){
-    let spanVidasJugador = document.getElementById("vidas-jugador")
-    let spanVidasEnemigo = document.getElementById("vidas-enemigo")
 
     if (ataqueEnemigo == ataqueJugador) {
         crearMensaje("No one wins")
@@ -132,9 +145,7 @@ function revisarVidas(){
 }
 
 function crearMensaje(resultado){
-    let sectionMessages = document.getElementById("result")
-    let attackPlayer = document.getElementById("attack-player")
-    let attackEnemy = document.getElementById("attack-enemy")
+    
 
     let newAttackPlayer = document.createElement("p")
     let newAttackEnemy = document.createElement("p")
@@ -151,18 +162,18 @@ function crearMensaje(resultado){
 }
 
 function CrearMensajeFinal(resultadoFinal){
-    let sectionMessages = document.getElementById("result")
+    
 
     sectionMessages.innerHTML = resultadoFinal
 
-    let botonFuego = document.getElementById("boton-fire")
+    
     botonFuego.disabled = true
-    let botonAgua = document.getElementById("boton-water")
+    
     botonAgua.disabled = true
-    let botonTierra = document.getElementById("boton-earth")
+   
     botonTierra.disabled = true
 
-    let sectionReiniciar = document.getElementById("reiniciar")
+   
     sectionReiniciar.style.display = "block"
 }
 
