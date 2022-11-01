@@ -1,16 +1,12 @@
 const sectionSeleccionarAtaque = document.getElementById("seleccionar-ataque")
 const sectionReiniciar = document.getElementById("reiniciar")
 const botonMascotaJugador = document.getElementById("boton-mascota")
-const botonFuego = document.getElementById("boton-fire")
-sectionReiniciar.style.display = 'none'
-const botonAgua = document.getElementById("boton-water")
-const botonTierra = document.getElementById("boton-earth")
 const botonReiniciar = document.getElementById("boton-reiniciar")
+sectionReiniciar.style.display = 'none'
+
 
 const sectionSeleccionarMascota = document.getElementById("seleccionar-mascota")
-const inputBloom = document.getElementById("bloom")
-const inputFlora = document.getElementById("flora")
-const inputTechna = document.getElementById("techna")
+
 const spanMascotaJugador = document.getElementById("mascota-jugador")
 const spanMascotaEnemigo = document.getElementById ("mascota-enemigo")
 
@@ -20,27 +16,99 @@ const spanVidasEnemigo = document.getElementById("vidas-enemigo")
 const sectionMessages = document.getElementById("result")
 const attackPlayer = document.getElementById("attack-player")
 const attackEnemy = document.getElementById("attack-enemy")
+const cardbox = document.getElementById("cardbox")
+const attackscontainer = document.getElementById("attacks-container")
 
 
-
+let magalihis = []
 let ataqueJugador 
 let ataqueEnemigo
+let optionMagalihis
+let inputBloom
+let inputFlora
+let inputTechna 
+let petPlayer
+let attacksMagalihis
+let botonAgua 
+let botonTierra 
+let botonFuego
 let vidasJugador = 3
 let vidasEnemigo = 3
+
+class Magalihi {
+    constructor(name, photo, lives){
+        this.name = name 
+        this.photo = photo
+        this.lives = lives
+        this.attacks = []
+    }
+}
+
+let bloom = new Magalihi("Bloom", "./assets/bloon.png", 5)
+
+let flora = new Magalihi("Flora", "./assets/flora.png", 5)
+
+let techna = new Magalihi("Techna", "./assets/technaa.png", 5)
+
+bloom.attacks.push(
+    { name: "🔥", id: "boton-fire"},
+    { name: "🔥", id: "boton-fire"},
+    { name: "🔥", id: "boton-fire"},
+    { name: "🪴", id: "boton-earth"},
+    { name: "💧", id: "boton-water"},
+)
+
+flora.attacks.push(
+    { name: "🪴", id: "boton-earth"},
+    { name: "🪴", id: "boton-earth"},
+    { name: "🪴", id: "boton-earth"},
+    { name: "🔥", id: "boton-fire"},
+    { name: "💧", id: "boton-water"},
+)
+
+techna.attacks.push(
+    { name: "💧", id: "boton-water"},
+    { name: "💧", id: "boton-water"},
+    { name: "💧", id: "boton-water"},
+    { name: "🔥", id: "boton-fire"},
+    { name: "🪴", id: "boton-earth"},
+)
+
+
+magalihis.push(bloom, flora, techna)
 
 function iniciarJuego(){
     
     sectionSeleccionarAtaque.style.display = "none"
 
+    magalihis.forEach((magalihi) => {
+        optionMagalihis = `<input type="radio" name="mascota" id=${magalihi.name}/>
+        <label class="tarjeta-de-mokepon" for=${magalihi.name}>
+            <p>${magalihi.name}</p>
+            <img src=${magalihi.photo} alt=${magalihi.name}>
+        </label>` 
+    })
+
+    magalihis.forEach((magalihi) => {
+        optionMagalihis = `<input type="radio" name="mascota" id=${magalihi.name} />
+        <label class="tarjeta-de-mokepon-bloom" for=${magalihi.name}>
+            <p>${magalihi.name}</p>
+            <img src=${magalihi.photo} alt=${magalihi.name}>
+        </label>` 
+
+    cardbox.innerHTML += optionMagalihis 
+
+
+     inputBloom = document.getElementById("Bloom")
+     inputFlora = document.getElementById("Flora")
+     inputTechna = document.getElementById("Techna")
+    })
+
     
     botonMascotaJugador.addEventListener("click", seleccionarMascotaJugador)
 
     
-    botonFuego.addEventListener("click", ataqueFire)
    
-    botonAgua.addEventListener("click", ataqueWater)
-   
-    botonTierra.addEventListener("click", ataqueEarth)
 
     
     botonReiniciar.addEventListener("click", reiniciarJuego)
@@ -56,30 +124,57 @@ function seleccionarMascotaJugador(){
     
 
     if (inputBloom.checked){
-        spanMascotaJugador.innerHTML = "Bloom"
+        spanMascotaJugador.innerHTML = inputBloom.id
+        petPlayer = inputBloom.id
     } else if (inputFlora.checked) {
-        spanMascotaJugador.innerHTML = "Flora"
+        spanMascotaJugador.innerHTML = inputFlora.id
+        petPlayer = inputFlora.id
     } else if (inputTechna.checked) {
-        spanMascotaJugador.innerHTML = "Techna"
+        spanMascotaJugador.innerHTML = inputTechna.id
+        petPlayer = inputTechna.id
     }else {
         alert("Select a fighter")
     }
 
+    extractAttacks(petPlayer)
     seleccionarMascotaEnemigo()
 }
 
-function seleccionarMascotaEnemigo(){
-    let mascotaAleatorio = aleatorio(1, 4)
+function extractAttacks(petPlayer) {
+    let attacks
+    for (let i = 0; i < magalihis.length; i++) {
+        if (petPlayer == magalihis[i].name) {
+            attacks = magalihis[i].attacks
+        }
+        
+    }
+    showAttacks(attacks)
+}
 
-    if (mascotaAleatorio == 1){
-        spanMascotaEnemigo.innerHTML = "Bloom"
-    } else if (mascotaAleatorio == 2){
-        spanMascotaEnemigo.innerHTML = "Flora"
-    } else if (mascotaAleatorio == 3){
-        spanMascotaEnemigo.innerHTML = "Techna"
-    }else {
-        spanMascotaEnemigo.innerHTML = "Musa"
-    } 
+function showAttacks(attacks){
+    attacks.forEach((attack) => {
+        attacksMagalihis = `
+        <button id=${attack.id} class="attack">${attack.name} </button>
+        `
+        attackscontainer.innerHTML += attacksMagalihis
+
+    })
+    
+    botonAgua = document.getElementById("boton-water")
+    botonTierra = document.getElementById("boton-earth")
+    botonFuego = document.getElementById("boton-fire")
+
+    botonFuego.addEventListener("click", ataqueFire)
+   
+    botonAgua.addEventListener("click", ataqueWater)
+   
+    botonTierra.addEventListener("click", ataqueEarth)
+}
+
+function seleccionarMascotaEnemigo(){
+    let mascotaAleatorio = aleatorio(0, magalihis.length -1)
+
+    spanMascotaEnemigo.innerHTML = magalihis[mascotaAleatorio].nombre
 }
 
 function ataqueFire(){
