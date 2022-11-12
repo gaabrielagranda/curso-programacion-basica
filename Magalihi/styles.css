@@ -1,71 +1,87 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
 
 body {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'VT323', monospace;
     background-color: #98A8F8;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'VT323', monospace;
     background: linear-gradient(rgba(0,0,0,0.5) 100%, rgba(0,0,0,0.5) 100%), url("./assets/alfea.png");
     background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 #seleccionar-mascota {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    margin-top: -5px;
+
 }
 
-.titulo {
+.title {
     color: palevioletred;
-    font-size: 50px;
+    font-size: 200px;
+    letter-spacing: 4px;
+    margin-top: 100px;
+    margin-bottom: 70px;
+    text-shadow: 4px 0px 1px #07689f;
+    line-height: 70px;
+    padding: 10px;
+    text-align: center;
 }
 
-.subtitulo {
+.subtitle {
     color: #CDFCF6;
-    font-size: 30px;
+    font-size: 100px;
+    letter-spacing: 4px;
+    margin-top: 60px;
+    margin-bottom: 20px;
+    text-shadow: 4px 0px 1px #07689f;
+    line-height: 100px;
+    padding: 10px;
+    text-align: center;
 }
 
 .tarjetas, .tarjetas-ataques {
     display: flex;
+    justify-content: center;
     gap: 10px;
 }
 
 .tarjeta-de-mokepon{
-    width: 112px;
-    height: 100px;
+    
     background: #BCCEF8;
-    padding: 10px;
+    padding: 5px;
     box-sizing: border-box;
-    border-radius: 20px;
+    border-radius: 15px;
+    margin: 10px;
     display: flex;
     color: palevioletred;
-}
-
-.tarjeta-de-mokepon-bloom{
-    width: 125px;
-    height: 100px;
-    background: #BCCEF8;
-    padding: 10px;
-    box-sizing: border-box;
-    border-radius: 20px;
-    display: flex;
-    color: palevioletred;
+    font-size: 23px;
+    flex-direction: column;
+    cursor:pointer;/*to have a hand over the card instead of the standar mouse one*/
+    align-items: center;
+    justify-content: center;
 }
 
 .tarjeta-de-mokepon img{
-    width: 90px;
+    margin-top: 25px;
+    height:160px;
 }
 
 #boton-mascota {
+    display:flex;
+    margin: 10px auto 8px;
+    background: rgb(236, 240, 236);
+    color: rgb(9, 9, 9);
+    height: 55px;
     width: 200px;
-    height: 40px;
-    border-radius: 20px;
-    background: transparent;
-    border: 2px solid white;
-    color: white;
-    font-family: 'Nunito', sans-serif;
-    margin-top: 30px;
+    border-radius: 30px;
+    font-size: 20px;
+    align-items: center;
+    justify-content: center;
+    cursor:pointer;
+    font-family: 'VT323', monospace;
+    margin-top: 40px;
 }
 
 input{
@@ -73,12 +89,14 @@ input{
 }
 
 input:checked + label {
-    background-color: plum;
+    background-color: #570530;
+    color: white;
 }
 
 #seleccionar-ataque {
     flex-direction: column;
     align-items: center;
+    margin-top:20px;
 }
 
 .attack {
@@ -88,7 +106,7 @@ input:checked + label {
     border-radius: 20px;
     border-color: transparent;
     color: white;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'VT323', monospace;
 }
 
 #messages {
@@ -100,14 +118,14 @@ input:checked + label {
     display: flex;
     align-items: center;
     flex-direction: column;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'VT323', monospace;
 }
 
 #boton-reiniciar {
     border: none;
     color: #CDFCF6;
     background-color: #98A8F8;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'VT323', monospace;
 }
 
 .ataques {
@@ -125,6 +143,16 @@ input:checked + label {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  #see-map {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #map {
+    border: 2px solid white;
   }
 
   @media (max-width: 360px) {

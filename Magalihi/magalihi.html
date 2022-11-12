@@ -7,9 +7,9 @@
     </head>
     <body>
         <section id="seleccionar-mascota">
-            <h1 class="titulo"> Magalihi</h1>
+            <h1 class="title"> Magalihi</h1>
 
-            <h2 class="subtitulo">Choose your fighter:</h2>
+            <h2 class="subtitle">Choose your fighter:</h2>
 
             <div id="cardbox" class="tarjetas">
                 
@@ -20,10 +20,19 @@
             <button id="boton-mascota">Select</button>
         </section>
 
-        <section id="seleccionar-ataque">
-            <h1 class="titulo">Magalihi</h1>
+        <section id="see-map">
+            <h1 class="title two"> Walk through the map with your Magalihi</h1>
+            <canvas id="map"></canvas>
+            <button onmouseup="stopMovement()" onmousedown="moveUp()">Up</button>
+            <button onmouseup="stopMovement()" onmousedown="moveLeft()">Left</button>
+            <button onmouseup="stopMovement()" onmousedown="moveDown()">Down</button>
+            <button onmouseup="stopMovement()" onmousedown="moveRight()">Right</button>
+        </section>
 
-            <h2 class="subtitulo">Choose your attack</h2>
+        <section id="seleccionar-ataque">
+            <h1 class="title">Magalihi</h1>
+
+            <h2 class="subtitle">Choose your attack</h2>
 
             <div id= "attacks-container" class="tarjetas-ataques">
  
