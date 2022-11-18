@@ -29,6 +29,10 @@ body {
     text-align: center;
 }
 
+.two {
+    
+}
+
 .subtitle {
     color: #CDFCF6;
     font-size: 100px;
@@ -151,8 +155,25 @@ input:checked + label {
     justify-content: center;
   }
 
-  #map {
-    border: 2px solid white;
+  .other {
+    display: flex;
+  flex-direction: column;
+  margin-top:20px;
+  }
+
+  .directions {
+    display: grid;
+    margin: 10px auto 8px;
+    background: rgb(236, 240, 236);
+    color: rgb(9, 9, 9);
+    height: 40px;
+    width: 80px;
+    border-radius: 30px;
+    font-size: 20px;
+    align-items: center;
+    cursor:pointer;
+    font-family: 'VT323', monospace;
+    margin: 10px
   }
 
   @media (max-width: 360px) {

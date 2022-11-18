@@ -1,4 +1,4 @@
-const sectionSeleccionarAtaque = document.getElementById("seleccionar-ataque")
+const sectionSelectAttack = document.getElementById("seleccionar-ataque")
 const sectionReiniciar = document.getElementById("reiniciar")
 const botonMascotaJugador = document.getElementById("boton-mascota")
 const botonReiniciar = document.getElementById("boton-reiniciar")
@@ -25,16 +25,13 @@ let magalihis = []
 let ataqueJugador = []
 let ataqueEnemigo = []
 let optionMagalihis
-let inputBloom
-let inputFlora
-let inputTechna 
 let petPlayer
 let petPlayerObject
 let attacksMagalihis
 let attackMagalihiEnemy
-let botonAgua 
-let botonTierra 
-let botonFuego
+let buttonWater
+let ButtonEarth 
+let buttonFire
 let buttons = []
 let indexAttackPlayer
 let indexAttackEnemy
@@ -46,17 +43,29 @@ let canva = map.getContext("2d")
 let interval 
 let mapBackground = new Image()
 mapBackground.src = "./assets/magalihi2.png"
+let heighWeAreLookingfor
+let lenghtMap = window.innerWidth - 20
+const maxLenght = 350
+
+if(lenghtMap > maxLenght){
+    lenghtMap = maxLenght - 20
+}
+
+heighWeAreLookingfor = lenghtMap * 600 / 800
+
+map.windth = lenghtMap
+map.height = heighWeAreLookingfor
 
 class Magalihi {
-    constructor(name, photo, lives, mappic, x =10, y = 10){
+    constructor(name, photo, lives, mappic){
         this.name = name 
         this.photo = photo
         this.lives = lives
         this.attacks = []
-        this.x = 20
-        this.y = 30
         this.anch = 80
         this.alt = 80
+        this.x = aleatorio(0, map.width -this.anch)
+        this.y = aleatorio(0, map.height - this.alt)
         this.mappic = new Image()
         this.mappic.src = mappic
         this.velocityX = 0
@@ -65,7 +74,7 @@ class Magalihi {
     drawMagalihi() {
         canva.drawImage(
             this.mappic,
-            thisthis.x,
+            this.x,
             this.y,
             this.anch,
             this.alt
@@ -80,14 +89,22 @@ let harry = new Magalihi("Harry", "./assets/2.png", 5, "./assets/8.png")
 let bruno = new Magalihi("Bruno", "./assets/4.png", 5, "./assets/10.png")
 let flynn = new Magalihi("Flynn", "./assets/5.png", 5, "./assets/11.png")
 
-let aliceEnemy = new Magalihi("Alice", "./assets/1.png", 5, "./assets/7.png", 80, 120)
-let violetEnemy = new Magalihi("Violet", "./assets/3.png", 5, "./assets/9.png", 150, 95)
-let agathaEnemy = new Magalihi("Agatha", "./assets/6.png", 5, "./assets/12.png", 200, 190)
-let harryEnemy = new Magalihi("Harry", "./assets/2.png", 5, "./assets/8.png", 90, 130)
-let brunoEnemy = new Magalihi("Bruno", "./assets/4.png", 5, "./assets/10.png", 70, 130)
-let flynnEnemy = new Magalihi("Flynn", "./assets/5.png", 5, "./assets/11.png", 120, 200)
+let aliceEnemy = new Magalihi("Alice", "./assets/1.png", 5, "./assets/7.png")
+let violetEnemy = new Magalihi("Violet", "./assets/3.png", 5, "./assets/9.png")
+let agathaEnemy = new Magalihi("Agatha", "./assets/6.png", 5, "./assets/12.png")
+let harryEnemy = new Magalihi("Harry", "./assets/2.png", 5, "./assets/8.png")
+let brunoEnemy = new Magalihi("Bruno", "./assets/4.png", 5, "./assets/10.png")
+let flynnEnemy = new Magalihi("Flynn", "./assets/5.png", 5, "./assets/11.png")
 
 alice.attacks.push(
+    { name: "🔥", id: "boton-fire"},
+    { name: "🔥", id: "boton-fire"},
+    { name: "🔥", id: "boton-fire"},
+    { name: "🪴", id: "boton-earth"},
+    { name: "💧", id: "boton-water"},
+)
+
+aliceEnemy.attacks.push(
     { name: "🔥", id: "boton-fire"},
     { name: "🔥", id: "boton-fire"},
     { name: "🔥", id: "boton-fire"},
@@ -103,7 +120,23 @@ violet.attacks.push(
     { name: "💧", id: "boton-water"},
 )
 
+violetEnemy.attacks.push(
+    { name: "🪴", id: "boton-earth"},
+    { name: "🪴", id: "boton-earth"},
+    { name: "🪴", id: "boton-earth"},
+    { name: "🔥", id: "boton-fire"},
+    { name: "💧", id: "boton-water"},
+)
+
 agatha.attacks.push(
+    { name: "💧", id: "boton-water"},
+    { name: "💧", id: "boton-water"},
+    { name: "💧", id: "boton-water"},
+    { name: "🔥", id: "boton-fire"},
+    { name: "🪴", id: "boton-earth"},
+)
+
+agathaEnemy.attacks.push(
     { name: "💧", id: "boton-water"},
     { name: "💧", id: "boton-water"},
     { name: "💧", id: "boton-water"},
@@ -119,7 +152,23 @@ harry.attacks.push(
     { name: "💧", id: "boton-water"},
 )
 
+harryEnemy.attacks.push(
+    { name: "🔥", id: "boton-fire"},
+    { name: "🔥", id: "boton-fire"},
+    { name: "🔥", id: "boton-fire"},
+    { name: "💧", id: "boton-earth"},
+    { name: "💧", id: "boton-water"},
+)
+
 bruno.attacks.push(
+    { name: "💧", id: "boton-fire"},
+    { name: "💧", id: "boton-fire"},
+    { name: "🪴", id: "boton-fire"},
+    { name: "🪴", id: "boton-earth"},
+    { name: "💧", id: "boton-water"},
+)
+
+brunoEnemy.attacks.push(
     { name: "💧", id: "boton-fire"},
     { name: "💧", id: "boton-fire"},
     { name: "🪴", id: "boton-fire"},
@@ -135,12 +184,19 @@ flynn.attacks.push(
     { name: "💧", id: "boton-water"},
 )
 
+flynnEnemy.attacks.push(
+    { name: "🔥", id: "boton-fire"},
+    { name: "💧", id: "boton-fire"},
+    { name: "🪴", id: "boton-fire"},
+    { name: "🪴", id: "boton-earth"},
+    { name: "💧", id: "boton-water"},
+)
 
 magalihis.push(alice, violet, agatha, harry, bruno, flynn)
 
-function iniciarJuego(){
+function startGame(){
     
-    sectionSeleccionarAtaque.style.display = "none"
+    sectionSelectAttack.style.display = "none"
     sectionSeeMap.style.display = "none"
 
     magalihis.forEach((magalihi) => {
@@ -168,15 +224,13 @@ function iniciarJuego(){
    
 
     
-    botonReiniciar.addEventListener("click", reiniciarJuego)
+    botonReiniciar.addEventListener("click", restartGame)
 }
 
 function seleccionarMascotaJugador(){
    
     sectionSeleccionarMascota.style.display = "none"
     
-    
-    // sectionSeleccionarAtaque.style.display = "flex"
 
     if (inputAlice.checked){
         spanMascotaJugador.innerHTML = inputAlice.id
@@ -203,7 +257,6 @@ function seleccionarMascotaJugador(){
     extractAttacks(petPlayer)
     sectionSeeMap.style.display = "flex"
     startMap()
-    seleccionarMascotaEnemigo()
 }
 
 function extractAttacks(petPlayer) {
@@ -226,9 +279,9 @@ function showAttacks(attacks) {
 
     })
 
-    botonFuego = document.getElementById("boton-fire")
-    botonTierra = document.getElementById("boton-earth")
-    botonAgua = document.getElementById("boton-water")
+    buttonFire = document.getElementById("boton-fire")
+    ButtonEarth = document.getElementById("boton-earth")
+    buttonWater = document.getElementById("boton-water")
     buttons = document.querySelectorAll(".BATattack")
 
 }
@@ -258,11 +311,11 @@ function attackseq() {
     
 }
 
-function seleccionarMascotaEnemigo(){
-    let mascotaAleatorio = aleatorio(0, magalihis.length -1)
+function selectPetEnemy(enemy){
+   
 
-    spanMascotaEnemigo.innerHTML = magalihis[mascotaAleatorio].name
-    attackMagalihiEnemy = magalihis[mascotaAleatorio].attacks
+    spanMascotaEnemigo.innerHTML = enemy.name
+    attackMagalihiEnemy = enemy.attacks
     attackseq()
 }
 
@@ -321,16 +374,16 @@ function combate(){
         }
     }
 
-    revisarVidas()
+    checkLives()
 }
 
-function revisarVidas(){
+function checkLives(){
     if (victoryPlayer === victoryEnemy){
-        CrearMensajeFinal("No one wins, boo")
+        CreateFinalMessage("No one wins, boo")
     } else if (victoryPlayer > victoryEnemy){
-        CrearMensajeFinal("Yassss, you won")
+        CreateFinalMessage("Yassss, you won")
     } else {
-        CrearMensajeFinal("Not cool, you lost")
+        CreateFinalMessage("Not cool, you lost")
     }
 }
 
@@ -348,15 +401,14 @@ function crearMensaje(resultado){
     attackEnemy.appendChild(newAttackEnemy)
 }
 
-function CrearMensajeFinal(resultadoFinal){
-    
+function CreateFinalMessage(resultadoFinal){
 
     sectionMessages.innerHTML = resultadoFinal
    
     sectionReiniciar.style.display = "block"
 }
 
-function reiniciarJuego(){
+function restartGame(){
     location.reload()
 }
 
@@ -383,6 +435,21 @@ function drawCanva() {
         petPlayerObject.anch,
         petPlayerObject.alt
     )
+    petPlayerObject.drawMagalihi()
+    aliceEnemy.drawMagalihi()
+    agathaEnemy.drawMagalihi()
+    brunoEnemy.drawMagalihi()
+    flynnEnemy.drawMagalihi()
+    violetEnemy.drawMagalihi()
+    harryEnemy.drawMagalihi()
+    if (petPlayerObject.velocityX !== 0 || petPlayerObject.velocityY !== 0) {
+        checkCollision(aliceEnemy)
+        checkCollision(agathaEnemy)
+        checkCollision(harryEnemy)
+        checkCollision(brunoEnemy)
+        checkCollision(flynnEnemy)
+        checkCollision(violetEnemy)
+    }
 }
 
 function moveRight() {
@@ -426,8 +493,8 @@ function pressaKey(event) {
 }
 
 function startMap() {
-    map.width = 400
-    map.height = 300
+    map.width = 500
+    map.height = 400
     petPlayerObject = getObjectPet(petPlayer)
     interval = setInterval(drawCanva, 50)
 
@@ -445,4 +512,34 @@ function getObjectPet() {
     }
 }
 
-window.addEventListener("load", iniciarJuego)
+function checkCollision(enemy) {
+    const upEnemy = enemy.y
+    const downEnemy = enemy.y + enemy.height
+    const rightEnemy = enemy.x + enemy.length
+    const leftEnemy = enemy.x
+
+    const upPlayer = 
+        petPlayerObject.y +25 
+    const downPlayer = 
+        petPlayerObject.y + petPlayerObject.alt -25
+    const rightPlayer = 
+        petPlayerObject.x + petPlayerObject.anch -25
+    const leftPlayer = 
+        petPlayerObject.x +25
+    
+    if (
+        downPlayer < upEnemy || 
+        upPlayer > downEnemy ||
+        rightPlayer < leftEnemy ||
+        leftPlayer > rightEnemy
+    ) {
+        return
+    }
+    stopMovement()
+    clearInterval(interval)
+    sectionSelectAttack.style.display = "flex"
+    sectionSeeMap.style.display = "none"
+    selectPetEnemy(enemy)
+}
+
+window.addEventListener("load", startGame)
